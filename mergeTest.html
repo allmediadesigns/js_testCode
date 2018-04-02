@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Merge Test</title>
+    <script src="js/jquery.js"></script>
+</head>
+<body>
+
+<script>
+    var letters = {
+        letter:[
+            {
+                name_first: "James",
+                name_last: "Smith",
+                user_title: "Developer"
+            },
+            {
+                name_first:"Ronald",
+                name_last: "Regan",
+                user_title:"President"
+            }
+        ]
+    };
+
+
+
+
+    var blank_letter ={};
+
+    // Copy an object and set the value to Blank (string format)
+    function makeBlank(toObj, fromObj){
+        for(i in fromObj){
+            toObj[i] = ""
+        }
+    }
+
+    // This function will all you to add a object to an existing array of objects, using a blank object from makeBlank
+    function addItem(toObj, useBlankObj, objValues){
+        var tempObj = JSON.parse(JSON.stringify(useBlankObj));
+        var count_ObjValues = 0;
+        for(i in tempObj){
+            tempObj[i] = objValues[count_ObjValues];
+            count_ObjValues +=1;
+        }
+        toObj.push(tempObj);
+    }
+
+    //This function will drop an item from an Array
+    function dropItem(fromObj, itemNo){
+        fromObj.splice(itemNo, 1);
+    }
+
+    makeBlank(blank_letter, letters.letter[0]); // Grab from a single record
+    console.log(blank_letter);
+    addItem(letters.letter, blank_letter,["Tom","Jones","Singer"]);
+    dropItem(letters.letter, 1);
+
+</script>
+
+
+
+</body>
+</html>
